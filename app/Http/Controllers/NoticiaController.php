@@ -20,12 +20,17 @@ class NoticiaController extends Controller
         //$noticias = Noticia::orderByDesc('created_at')->limit(100)->get();
         //$noticias = [];
 
+        /*
         if(Cache::has('top_dez')){
             $noticias = Cache::get('top_dez');
         }else{
             $noticias = Noticia::orderByDesc('created_at')->limit(100)->get();
             Cache::put('top_dez', $noticias, 15);
         }
+        */
+        $noticias = Cache::remember('top_dez', 15, function(){
+            return Noticia::orderByDesc('created_at')->limit(100)->get();
+        });
         
 
         
