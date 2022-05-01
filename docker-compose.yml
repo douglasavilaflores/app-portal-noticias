@@ -5,6 +5,9 @@ services:
     app:
         container_name: especializati-laravel
         build:
+            args:
+                user: douglas
+                uid: 1000
             context: .
             dockerfile: Dockerfile
         image: especializati/laravel-app
@@ -70,4 +73,3 @@ services:
 
 networks: 
     laravel:
-        driver: bridge
